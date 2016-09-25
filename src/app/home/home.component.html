@@ -1,0 +1,7 @@
+<h4 [class.loading]="status=='loading'">{{status}}</h4>
+
+<cc-employee-selector *ngIf="schedule" [names]="schedule.employees" [selectedEmployee]="selectedEmployee" (employeeChange)="employeeChange($event)">
+</cc-employee-selector>
+
+<cc-schedule-table *ngIf="selectedEmployee" [entries]="selectedEntries">
+</cc-schedule-table>

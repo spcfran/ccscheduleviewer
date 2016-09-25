@@ -1,0 +1,29 @@
+// component styles are encapsulated and only applied to their components
+h3 {
+  color: red;
+}
+
+* {
+  //color: white;
+}
+
+h4 {
+  margin-top: 20px;
+}
+
+.loading {
+  animation-duration: .5s;
+  animation-fill-mode: both;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  animation-name: bounce;
+}
+
+@keyframes bounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-5px);
+  }
+}
