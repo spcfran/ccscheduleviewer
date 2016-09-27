@@ -41,6 +41,12 @@ export class ScheduleTableComponent {
     // Do stuff
   }
 
+  projectDisplayName(entry: CCScheduleEntry) {
+    if (!entry.project || !entry.project.name) return "-";
+    let prefix = entry.project.id ? `[${entry.project.id}] ` : "";
+    return `${prefix} ${entry.project.name}`;
+  }
+
   isToday(date: Date) {
     return this._utilService.isToday(date);
   }

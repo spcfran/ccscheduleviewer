@@ -47,6 +47,7 @@
     "@types/jasmine": "^2.2.29",
     "@types/node": "^6.0.38",
     "@types/protractor": "^1.5.16",
+    "@types/lodash": "4.14.36",
     "@types/selenium-webdriver": "2.44.28",
     "@types/xlsx": "0.0.30",
     "angular2-template-loader": "^0.4.0",

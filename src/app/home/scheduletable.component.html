@@ -11,7 +11,7 @@
         <tr *ngFor="let entry of entries" [class]="'day-'+entry.date.getDay()" [class.thisWeek]="isThisWeek(entry.date)" [class.today]="isToday(entry.date)">
             <td>{{entry.date | date: 'dd/MM/yyyy'}}</td>
             <td>{{entry.hours || "-"}}</td>
-            <td>{{entry.project.name || "-"}}</td>
+            <td>{{projectDisplayName(entry)}}</td>
             <td>{{entry.project.projectManager || "-"}}</td>
         </tr>
     </tbody>

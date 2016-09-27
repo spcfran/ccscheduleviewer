@@ -1,7 +1,17 @@
 <h4 [class.loading]="status=='loading'">{{status}}</h4>
 
-<cc-employee-selector *ngIf="schedule" [names]="schedule.employees" [selectedEmployee]="selectedEmployee" (employeeChange)="employeeChange($event)">
-</cc-employee-selector>
+<!-- If schedule loaded -->
+<div *ngIf="allEmployees.length > 0">
+    <div class="filters-panel">
+    <cc-employee-selector [names]="allEmployees" [selectedEmployee]="selectedEmployee" (employeeChange)="employeeChange($event)">
+    </cc-employee-selector>
 
-<cc-schedule-table *ngIf="selectedEmployee" [entries]="selectedEntries">
-</cc-schedule-table>
+    <label class="showPastWeeks">
+        <input type="checkbox" [(ngModel)]="showPastWeeks" (ngModelChange)="recalculateEntries()">
+        Show info from past weeks
+    </label>
+    </div>
+
+    <cc-schedule-table *ngIf="selectedEmployee" [entries]="selectedEntries">
+    </cc-schedule-table>
+</div>

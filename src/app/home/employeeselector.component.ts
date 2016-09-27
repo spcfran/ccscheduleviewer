@@ -12,10 +12,7 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
   `,
   styles: [`
 :host {
-  margin-top: 20px;
-  padding: 10px;
   display: block;
-  border: 1px solid black;
 }
 span {
   margin-right: 15px;

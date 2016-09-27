@@ -11,6 +11,17 @@ h4 {
   margin-top: 20px;
 }
 
+.filters-panel {
+  border: 1px solid black;
+  margin-top: 20px;
+  padding: 10px;
+}
+
+.showPastWeeks {
+  margin-top: 20px;
+  display: block;
+}
+
 .loading {
   animation-duration: .5s;
   animation-fill-mode: both;

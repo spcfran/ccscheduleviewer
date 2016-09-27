@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { SPHelperService } from "../shared";
+import { SPHelperService, UtilService } from "../shared";
 import { CCScheduleService, CCSchedule, CCScheduleEntry } from "../ccscheduledata";
-
+import { groupBy, sortBy } from "lodash";
 
 @Component({
   selector: 'my-home',
@@ -10,13 +10,15 @@ import { CCScheduleService, CCSchedule, CCScheduleEntry } from "../ccscheduledat
 })
 export class HomeComponent implements OnInit {
   private status = "Click button";
-  private schedule: CCSchedule;
+  private scheduleByEmployee: ({[key: string]: CCScheduleEntry[]}) = {};
+  private allEmployees = [];
   private selectedEmployee = "";
   private selectedEntries: CCScheduleEntry[] = [];
+  private showPastWeeks: boolean = false;
   @Input() autoInit: boolean = false;
   @Input() docUrl: string = "";
 
-  constructor(private _ccScheduleService: CCScheduleService, private _spHelper: SPHelperService) {
+  constructor(private _ccScheduleService: CCScheduleService, private _spHelper: SPHelperService, private _util: UtilService) {
     // Do stuff
   }
 
@@ -26,30 +28,33 @@ export class HomeComponent implements OnInit {
     }
   }
 
-  displayScheduleForSelectedEmployee() {
-    this.selectedEntries = this.schedule.entries
-      .filter(entry => entry.employee == this.selectedEmployee)
-      .sort((a, b) => a.date.valueOf() - b.date.valueOf()
-    );
+  recalculateEntries() {
+    let today = this._util.dateOnly(new Date());
+    let entries = groupBy
+    this.selectedEntries = (this.scheduleByEmployee[this.selectedEmployee] || [])
+      .filter(entry => this.showPastWeeks ? entry : (this._util.isSameWeek(entry.date, today) || entry.date >= today))
+    ;
   }
 
   loadSchedule() {
     this.status = "loading";
     this._ccScheduleService.loadSchedule(this.docUrl).then(schedule => {
-      this.schedule = schedule;
+      let allEntries = sortBy(schedule.entries, entry => entry.date);
+      this.scheduleByEmployee = groupBy(allEntries, entry => entry.employee);
+      this.allEmployees = schedule.employees;
 
-      this.status = `Loaded ${schedule.entries.length} entries for ${schedule.employees.length} employees`;
+      this.status = `Loaded ${allEntries.length} entries for ${this.allEmployees.length} employees`;
 
       this.selectedEmployee = this._spHelper.getCurrentUserDisplayName();
 
-      this.displayScheduleForSelectedEmployee();
+      this.recalculateEntries();
     });
   }
 
   employeeChange(selectedEmployee) {
     if (selectedEmployee) {
       this.selectedEmployee = selectedEmployee;
-      this.displayScheduleForSelectedEmployee();
+      this.recalculateEntries();
     }
   }
 }
