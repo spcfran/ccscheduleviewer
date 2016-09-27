@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 const ExcelWorker = require("worker!./excel-worker");
+// const ExcelWorker = require("worker!./sites/development/schedule/SiteAssets/dist/excel-worker");
 import { IExcelParserOptions, IExcelWorkbookResult } from "./excel.model";
 
 @Injectable()

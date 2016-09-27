@@ -1,5 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { CCScheduleEntry } from "../ccscheduledata";
+import { CCScheduleEntry, CCScheduleService } from "../ccscheduledata";
+import { UtilService } from "../shared";
 
 @Component({
   selector: 'cc-schedule-table',
@@ -21,6 +22,12 @@ th,td {
 th:first-child { width: 110px }
 th:nth-child(2) { width: 55px }
 th:nth-child(4) { width: 150px }
+.thisWeek {
+  background-color: #fff0eb
+}
+.today {
+  background-color: #ffd0ca;
+}
 .day-5 td {
   padding-bottom: 40px;
   border-bottom: 1px solid #ccc;
@@ -30,7 +37,15 @@ th:nth-child(4) { width: 150px }
 export class ScheduleTableComponent {
   @Input() entries: CCScheduleEntry[];
 
-  constructor() {
+  constructor(private _utilService: UtilService) {
     // Do stuff
+  }
+
+  isToday(date: Date) {
+    return this._utilService.isToday(date);
+  }
+
+  isThisWeek(date: Date) {
+    return this._utilService.isSameWeek(date);
   }
 }
