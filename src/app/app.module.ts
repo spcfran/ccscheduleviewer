@@ -7,8 +7,9 @@ import { CCScheduleModule } from "./ccscheduledata";
 
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
-import { EmployeeSelectorComponent } from "./home/employeeselector.component";
+import { PersonSelectorComponent } from "./home/personselector.component";
 import { ScheduleTableComponent } from "./home/scheduletable.component";
+import { ScheduleTableByPmComponent } from "./home/scheduletablebypm.component";
 import { ApiService, SPHelperService, UtilService } from './shared';
 
 import { removeNgStyles, createNewHosts } from '@angularclass/hmr';
@@ -23,9 +24,10 @@ import { removeNgStyles, createNewHosts } from '@angularclass/hmr';
   ],
   declarations: [
     AppComponent,
-    HomeComponent, 
-    EmployeeSelectorComponent,
-    ScheduleTableComponent
+    HomeComponent,
+    PersonSelectorComponent,
+    ScheduleTableComponent,
+    ScheduleTableByPmComponent
   ],
   providers: [
     ApiService,

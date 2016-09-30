@@ -1,10 +1,10 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
-  selector: 'cc-employee-selector',
+  selector: 'cc-person-selector',
   template: `
-<span>Employee:</span>
-<select [ngModel]="selectedEmployee" (ngModelChange)="onChange($event)">
+<span>{{label}}</span>
+<select [ngModel]="selectedName" (ngModelChange)="onChange($event)">
   <option *ngFor="let name of names" [value]="name">
     {{name}}
   </option>
@@ -19,17 +19,18 @@ span {
 }  
   `],
 })
-export class EmployeeSelectorComponent implements OnInit {
+export class PersonSelectorComponent implements OnInit {
   @Input() names: string[];
-  @Input() selectedEmployee: string;
-  @Output() employeeChange = new EventEmitter();
+  @Input() label: string;
+  @Input() selectedName: string;
+  @Output() nameChange = new EventEmitter();
 
   constructor() {
     // Do stuff
   }
 
   onChange(value) {
-    this.employeeChange.emit(value);
+    this.nameChange.emit(value);
   }
 
   ngOnInit() {

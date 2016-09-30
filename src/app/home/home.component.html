@@ -3,15 +3,55 @@
 <!-- If schedule loaded -->
 <div *ngIf="allEmployees.length > 0">
     <div class="filters-panel">
-    <cc-employee-selector [names]="allEmployees" [selectedEmployee]="selectedEmployee" (employeeChange)="employeeChange($event)">
-    </cc-employee-selector>
 
-    <label class="showPastWeeks">
-        <input type="checkbox" [(ngModel)]="showPastWeeks" (ngModelChange)="recalculateEntries()">
-        Show info from past weeks
-    </label>
+        <div class="modeSelector">
+            <label>
+                <input #employee
+                type="radio" 
+                name="mode" 
+                value="employee" 
+                [(ngModel)]="mode"
+                (ngModelChange)="modeChange($event)" >
+                View by Employee
+            </label>
+            <label>
+                <input #pm
+                type="radio" 
+                name="mode"
+                value="pm"
+                [(ngModel)]="mode"
+                (ngModelChange)="modeChange($event)" >
+                View by PM
+            </label>
+        </div>
+
+        <cc-person-selector 
+            *ngIf="mode=='employee'" 
+            [names]="allEmployees" 
+            [label]="'Employee: '" 
+            [selectedName]="selectedEmployee"
+            (nameChange)="employeeChange($event)">
+        </cc-person-selector>
+
+        <cc-person-selector 
+            *ngIf="mode=='pm'" 
+            [names]="allPMs" 
+            [label]="'Project Manager: '" 
+            [selectedName]="selectedPM" 
+            (nameChange)="pmChange($event)">
+        </cc-person-selector>
+
+        <label class="showPastWeeks">
+            <input type="checkbox" 
+                [(ngModel)]="showPastWeeks" 
+                (ngModelChange)="recalculateEntries()">
+            Show info from past weeks
+        </label>
     </div>
 
-    <cc-schedule-table *ngIf="selectedEmployee" [entries]="selectedEntries">
+    <cc-schedule-table *ngIf="selectedEmployee && mode=='employee'" [entries]="selectedEntries">
     </cc-schedule-table>
+
+    <cc-schedule-table-by-pm *ngIf="selectedPM && mode=='pm'" [entries]="selectedEntries">
+    </cc-schedule-table-by-pm>
 </div>
