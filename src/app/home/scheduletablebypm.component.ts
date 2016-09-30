@@ -21,7 +21,7 @@ th,td {
 }
 th:first-child { width: 110px }
 th:nth-child(2) { width: 55px }
-th:nth-child(3) { width: 160px }
+th:nth-child(3) { width: 220px }
 .thisWeek {
   background-color: #fff0eb
 }
