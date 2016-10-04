@@ -28,13 +28,13 @@ var Zone$1 = (function (global) {
 
 ```html
 <div>
-  <link href="/sites/development/schedule/SiteAssets/dist/css/app.css" rel="stylesheet">
+  <link href="/sites/pmo/scheduleviewer/SiteAssets/dist/css/app.css" rel="stylesheet">
   <!--<my-app docUrl="/files/Enterprise Schedule 2016.xlsm">Loading...</my-app>-->
   <my-app docUrl="/sites/pmo/EnterpriseSchedule/Enterprise Schedule 2016.xlsm">Loading...</my-app>
 
-  <script type="text/javascript" src="/sites/development/schedule/SiteAssets/dist/js/polyfills.js"></script>
-  <script type="text/javascript" src="/sites/development/schedule/SiteAssets/dist/js/vendor.js"></script>
-  <script type="text/javascript" src="/sites/development/schedule/SiteAssets/dist/js/app.js"></script>
+  <script type="text/javascript" src="/sites/pmo/scheduleviewer/SiteAssets/dist/js/polyfills.js"></script>
+  <script type="text/javascript" src="/sites/pmo/scheduleviewer/SiteAssets/dist/js/vendor.js"></script>
+  <script type="text/javascript" src="/sites/pmo/scheduleviewer/SiteAssets/dist/js/app.js"></script>
 </div>
 ```
 
@@ -43,7 +43,7 @@ var Zone$1 = (function (global) {
 1. Open `dist/js/app.js`
 2. Find reference to `excel-worker.js` and hardcode with the SP route e.g:
 ```javascript
-t.exports=function(){return new Worker("/sites/development/schedule/SiteAssets/dist/excel-worker.js")}
+t.exports=function(){return new Worker("/sites/pmo/scheduleviewer/SiteAssets/dist/excel-worker.js")}
 ```
 
 
