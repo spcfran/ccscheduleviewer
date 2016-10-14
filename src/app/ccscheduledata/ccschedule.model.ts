@@ -23,6 +23,7 @@ export class CCScheduleEntry {
     date: Date;
     project: CCScheduleProject;
     hours: string;
+    provisional: boolean;
 
     private _util = new UtilService();
 
@@ -35,6 +36,7 @@ export class CCScheduleEntry {
         entry.date = UtilService.parseDate(source["WorkByDay"]);
         entry.project = CCScheduleProject.fromRawObject(source);
         entry.hours = source["BookedHours"]; //parseInt(source["BookedHours"]);
+        entry.provisional = source["BookingType"] == "Provisional"; 
 
         return entry;
     }
