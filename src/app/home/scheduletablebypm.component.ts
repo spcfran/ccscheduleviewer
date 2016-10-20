@@ -41,9 +41,9 @@ export class ScheduleTableByPmComponent {
   }
 
   projectDisplayName(entry: CCScheduleEntry) {
-    if (!entry.project || !entry.project.name) return "-";
+    if (!entry.project) return "-";
     let prefix = entry.project.id ? `[${entry.project.id}] ` : "";
-    return `${prefix} ${entry.project.name}`;
+    return `${prefix}${entry.project.name || "(Missing project name)"}`;
   }
 
   isToday(date: Date) {
